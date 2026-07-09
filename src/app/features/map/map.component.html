@@ -1,0 +1,19 @@
+<section class="cf-map-panel">
+  <div class="cf-map-toolbar">
+    @for (continent of continentFilters; track continent) {
+      <button
+        type="button"
+        class="cf-filter-btn"
+        [class.cf-filter-btn--active]="selectedContinent() === continent"
+        (click)="selectContinent(continent)"
+      >
+        {{ continent }}
+      </button>
+    }
+  </div>
+  <div
+    #mapContainer
+    class="cf-map-container"
+    [class.cf-map-container--picking]="pickOnMapActive()"
+  ></div>
+</section>

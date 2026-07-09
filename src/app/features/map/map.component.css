@@ -1,0 +1,47 @@
+.cf-map-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  height: 100%;
+}
+
+.cf-map-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.cf-filter-btn {
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid #333;
+  background-color: #1a1a1a;
+  color: #d4d4d4;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.cf-filter-btn:hover {
+  border-color: #f6821f;
+  color: #fbad41;
+}
+
+.cf-filter-btn--active {
+  background-color: #f6821f;
+  border-color: #f6821f;
+  color: #111;
+  font-weight: 600;
+}
+
+.cf-map-container {
+  flex: 1;
+  min-height: 420px;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  border: 1px solid #2a2a2a;
+}
+
+.cf-map-container--picking {
+  cursor: crosshair;
+}

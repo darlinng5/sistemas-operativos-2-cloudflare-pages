@@ -1,0 +1,22 @@
+<section class="cf-stats-panel">
+  <h2 class="cf-stats-title">Network Statistics</h2>
+
+  @if (loading()) {
+    <p class="cf-stats-loading">Loading locations...</p>
+  }
+
+  <div class="cf-stats-numbers">
+    <div class="cf-stat-card">
+      <span class="cf-stat-value">{{ displayedTotal() }}</span>
+      <span class="cf-stat-label">Data Centers</span>
+    </div>
+    <div class="cf-stat-card">
+      <span class="cf-stat-value">{{ displayedCountries() }}</span>
+      <span class="cf-stat-label">Countries</span>
+    </div>
+  </div>
+
+  <div class="cf-stats-chart">
+    <canvas #chartCanvas></canvas>
+  </div>
+</section>

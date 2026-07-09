@@ -1,0 +1,83 @@
+.cf-search {
+  position: relative;
+}
+
+.cf-search-input {
+  width: 100%;
+  padding: 0.6rem 0.85rem;
+  border-radius: 0.5rem;
+  border: 1px solid #333;
+  background-color: #1a1a1a;
+  color: #f5f5f5;
+  font-size: 0.9rem;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.cf-search-input:focus {
+  border-color: #f6821f;
+}
+
+.cf-search-results {
+  position: absolute;
+  z-index: 20;
+  top: calc(100% + 0.35rem);
+  left: 0;
+  right: 0;
+  max-height: 260px;
+  overflow-y: auto;
+  background-color: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 0.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0.25rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.cf-search-result {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.5rem 0.6rem;
+  background: transparent;
+  border: none;
+  border-radius: 0.35rem;
+  color: #e5e5e5;
+  cursor: pointer;
+  text-align: left;
+  font-size: 0.85rem;
+}
+
+.cf-search-result:hover {
+  background-color: rgba(246, 130, 31, 0.12);
+}
+
+.cf-search-result-city {
+  font-weight: 600;
+}
+
+.cf-search-result-country {
+  color: #999;
+  flex: 1;
+}
+
+.cf-search-result-iata {
+  color: #fbad41;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.cf-search-empty {
+  position: absolute;
+  top: calc(100% + 0.35rem);
+  left: 0;
+  right: 0;
+  padding: 0.6rem;
+  background-color: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 0.5rem;
+  color: #888;
+  font-size: 0.8rem;
+}

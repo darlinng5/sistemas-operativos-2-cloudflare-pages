@@ -1,0 +1,136 @@
+<section class="cf-yc-panel">
+  <h2 class="cf-yc-title">Your Connection</h2>
+  <p class="cf-yc-intro">
+    Find out which Cloudflare edge node would likely serve your requests first.
+  </p>
+
+  <div class="cf-yc-origin-actions">
+    <button
+      type="button"
+      class="cf-yc-button"
+      (click)="locateMe()"
+      [disabled]="status() === 'locating' || dataLoading()"
+    >
+      @if (status() === 'locating') {
+        Locating...
+      } @else {
+        Locate Me
+      }
+    </button>
+
+    <button
+      type="button"
+      class="cf-yc-button cf-yc-button--secondary"
+      [class.cf-yc-button--active]="pickOnMapActive()"
+      (click)="togglePickOnMap()"
+    >
+      @if (pickOnMapActive()) {
+        Click the map to place your marker...
+      } @else {
+        Pick location on map
+      }
+    </button>
+  </div>
+
+  @switch (status()) {
+    @case ('denied') {
+      <p class="cf-yc-message cf-yc-message--warn">
+        Location permission was denied. Enable it in your browser settings to see your nearest
+        edge node.
+      </p>
+    }
+    @case ('unsupported') {
+      <p class="cf-yc-message cf-yc-message--warn">
+        Geolocation isn't supported in this browser.
+      </p>
+    }
+    @case ('error') {
+      <p class="cf-yc-message cf-yc-message--warn">
+        Couldn't determine your location. Please try again.
+      </p>
+    }
+    @case ('no-data') {
+      <p class="cf-yc-message cf-yc-message--warn">
+        Location data isn't loaded yet — please wait a moment and try again.
+      </p>
+    }
+  }
+
+  @if (userOrigin(); as origin) {
+    <div class="cf-yc-mode-toggle">
+      <label class="cf-yc-radio">
+        <input
+          type="radio"
+          name="connectionMode"
+          [checked]="connectionMode() === 'auto'"
+          (change)="setConnectionMode('auto')"
+        />
+        Auto: nearest node
+      </label>
+      <label class="cf-yc-radio">
+        <input
+          type="radio"
+          name="connectionMode"
+          [checked]="connectionMode() === 'manual'"
+          (change)="setConnectionMode('manual')"
+        />
+        Manual: choose a node
+      </label>
+    </div>
+
+    @if (connectionMode() === 'manual') {
+      <select class="cf-yc-select" (change)="onManualTargetChange($event)">
+        <option value="" disabled [selected]="!manualTargetId()">Select a node...</option>
+        @for (group of groupedLocations(); track group.continent) {
+          <optgroup [label]="group.continent">
+            @for (loc of group.locations; track loc.id) {
+              <option [value]="loc.id" [selected]="manualTargetId() === loc.id">
+                {{ loc.city }}, {{ loc.country }} ({{ loc.iata_code }})
+              </option>
+            }
+          </optgroup>
+        }
+      </select>
+    }
+
+    @if (targetLocation(); as target) {
+      <div class="cf-yc-result">
+        <p class="cf-yc-result-city">{{ target.city }}, {{ target.country }}</p>
+        @if (distanceLabel(); as distanceText) {
+          <p class="cf-yc-result-distance">
+            ~{{ distanceText }} away &middot; {{ target.iata_code }}
+            @if (origin.source === 'simulated') {
+              &middot; simulated origin
+            }
+          </p>
+        }
+
+        <button
+          type="button"
+          class="cf-yc-button cf-yc-test-button"
+          (click)="testConnection()"
+          [disabled]="testStatus() === 'testing'"
+        >
+          @if (testStatus() === 'testing') {
+            Testing...
+          } @else {
+            Test connection
+          }
+        </button>
+
+        @if (testStatus() === 'testing') {
+          <p class="cf-yc-test-pulse"><span class="cf-yc-pulse-dot"></span> Measuring simulated round trip...</p>
+        }
+
+        @if (testStatus() === 'done' && testResultMs() !== null) {
+          <p class="cf-yc-test-result">
+            ~{{ testResultMs() }} ms (estimated, based on physical distance — not a real network
+            measurement)
+          </p>
+        }
+      </div>
+    } @else if (connectionMode() === 'manual') {
+      <p class="cf-yc-message">Choose a node above to test your connection.</p>
+    }
+  }
+</section>

@@ -1,0 +1,132 @@
+.cf-hiw {
+  padding: 1.5rem;
+  background-color: #141414;
+  border: 1px solid #2a2a2a;
+  border-radius: 0.75rem;
+}
+
+.cf-hiw-title {
+  margin: 0 0 1.25rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #f5f5f5;
+}
+
+.cf-hiw-diagram {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  padding: 1rem 0;
+}
+
+.cf-hiw-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 130px;
+  padding: 1rem;
+  background-color: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  border-radius: 0.65rem;
+}
+
+.cf-hiw-node--accent {
+  border-color: #f6821f;
+  background-color: rgba(246, 130, 31, 0.08);
+}
+
+.cf-hiw-icon {
+  font-size: 1.75rem;
+}
+
+.cf-hiw-label {
+  font-size: 0.8rem;
+  color: #d4d4d4;
+  text-align: center;
+}
+
+.cf-hiw-connector {
+  position: relative;
+  width: 60px;
+  height: 2px;
+  background-color: #333;
+}
+
+.cf-hiw-pulse {
+  position: absolute;
+  top: -3px;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #fbad41;
+  box-shadow: 0 0 8px 2px rgba(251, 173, 65, 0.7);
+  animation: cf-pulse-travel 1.8s linear infinite;
+}
+
+.cf-hiw-pulse--delayed {
+  animation-delay: 0.9s;
+}
+
+@keyframes cf-pulse-travel {
+  0% {
+    left: 0;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    left: calc(100% - 8px);
+    opacity: 0;
+  }
+}
+
+.cf-hiw-explainer {
+  margin: 0.5rem auto 0;
+  max-width: 640px;
+  text-align: center;
+  color: #b3b3b3;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 640px) {
+  .cf-hiw-diagram {
+    flex-direction: column;
+  }
+
+  .cf-hiw-connector {
+    width: 2px;
+    height: 40px;
+  }
+
+  .cf-hiw-pulse {
+    top: 0;
+    left: -3px;
+    animation-name: cf-pulse-travel-vertical;
+  }
+
+  @keyframes cf-pulse-travel-vertical {
+    0% {
+      top: 0;
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      top: calc(100% - 8px);
+      opacity: 0;
+    }
+  }
+}

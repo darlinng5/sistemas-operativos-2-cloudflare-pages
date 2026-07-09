@@ -1,0 +1,27 @@
+<div class="cf-search">
+  <input
+    type="text"
+    class="cf-search-input"
+    placeholder="Search by city or country..."
+    [value]="query()"
+    (input)="onInput($any($event.target).value)"
+    (focus)="onFocus()"
+    (blur)="onBlur()"
+  />
+
+  @if (showResults() && results().length > 0) {
+    <ul class="cf-search-results">
+      @for (result of results(); track result.id) {
+        <li>
+          <button type="button" class="cf-search-result" (click)="selectResult(result.id)">
+            <span class="cf-search-result-city">{{ result.city }}</span>
+            <span class="cf-search-result-country">{{ result.country }}</span>
+            <span class="cf-search-result-iata">{{ result.iata_code }}</span>
+          </button>
+        </li>
+      }
+    </ul>
+  } @else if (showResults() && query().trim().length > 0) {
+    <div class="cf-search-empty">No matching locations</div>
+  }
+</div>

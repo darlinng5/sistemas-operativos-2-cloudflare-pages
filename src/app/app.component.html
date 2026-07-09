@@ -1,0 +1,24 @@
+<div class="cf-app">
+  <app-navbar />
+
+  @if (loadError()) {
+    <p class="cf-load-error">
+      Couldn't load Cloudflare location data. Please refresh the page.
+    </p>
+  }
+
+  <main class="cf-main">
+    <section class="cf-explorer-grid">
+      <div class="cf-map-column">
+        <app-cf-map />
+      </div>
+      <aside class="cf-sidebar-column">
+        <app-cf-search />
+        <app-cf-stats />
+      </aside>
+    </section>
+
+    <app-how-it-works />
+    <app-your-connection />
+  </main>
+</div>

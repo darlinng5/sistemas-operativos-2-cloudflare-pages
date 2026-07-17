@@ -1,8 +1,5 @@
 <div class="cf-app">
   <app-navbar />
-<h2 style="text-align: center; color: #f63; position: absolute; top: 10px; left: 50%; transform: translateX(-50%); z-index: 9999;">
-  ¡Tarea Con Exitoso! 
-</h2>
 
   @if (loadError()) {
     <p class="cf-load-error">
@@ -11,6 +8,13 @@
   }
 
   <main class="cf-main">
+
+    <!-- Agrega esto -->
+    <div class="header-info">
+      <h2>Proyecto de Integración </h2>
+      <p><strong>Creado por:</strong> Chris Benitez</p>
+    </div>
+
     <section class="cf-explorer-grid">
       <div class="cf-map-column">
         <app-cf-map />

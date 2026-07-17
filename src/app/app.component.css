@@ -45,3 +45,18 @@
     grid-template-columns: 1fr;
   }
 }
+
+.header-info {
+    text-align: center;
+    color: white;
+    margin: 20px 0;
+}
+
+.header-info h2 {
+    color: #f48120; /* Naranja de Cloudflare */
+    margin-bottom: 8px;
+}
+
+.header-info p {
+    font-size: 18px;
+}

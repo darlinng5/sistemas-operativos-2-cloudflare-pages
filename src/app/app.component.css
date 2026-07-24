@@ -60,3 +60,48 @@
 .header-info p {
     font-size: 18px;
 }
+.usuarios-section {
+  padding: 1.5rem;
+  background-color: #151515;
+  border: 1px solid #333;
+  border-radius: 12px;
+  color: white;
+}
+
+.usuarios-section h2 {
+  margin-top: 0;
+  text-align: center;
+  color: #f6821f;
+}
+
+.usuarios-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1rem;
+}
+
+.usuario-card {
+  padding: 1rem;
+  background-color: #202020;
+  border: 1px solid #3a3a3a;
+  border-radius: 10px;
+}
+
+.usuario-card h3 {
+  margin-top: 0;
+  color: #fbad41;
+}
+
+.usuario-card p {
+  margin: 0.4rem 0;
+  font-size: 0.9rem;
+}
+
+.estado {
+  text-align: center;
+}
+
+.error {
+  text-align: center;
+  color: #ff6b6b;
+}

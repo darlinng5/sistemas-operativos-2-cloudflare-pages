@@ -8,17 +8,18 @@
   }
 
   <main class="cf-main">
-
-    <!-- Agrega esto -->
     <div class="header-info">
-      <h2>Proyecto de Integración </h2>
-     <p><strong>Creado por:</strong> Roxana Ardon</p>
+
+      <h2>Proyecto de Integración</h2>
+      <p><strong>Creado por:</strong> Chris Benitez</p>
+
     </div>
 
     <section class="cf-explorer-grid">
       <div class="cf-map-column">
         <app-cf-map />
       </div>
+
       <aside class="cf-sidebar-column">
         <app-cf-search />
         <app-cf-stats />
@@ -27,5 +28,49 @@
 
     <app-how-it-works />
     <app-your-connection />
+
+    <section class="usuarios-section">
+      <h2>Usuarios obtenidos mediante arquitectura Serverless</h2>
+
+      @if (cargandoUsuarios()) {
+        <p class="estado">Cargando usuarios...</p>
+      }
+
+      @if (errorUsuarios()) {
+        <p class="error">
+          {{ errorUsuarios() }}
+        </p>
+      }
+
+      @if (!cargandoUsuarios() && !errorUsuarios()) {
+        <div class="usuarios-grid">
+          @for (usuario of usuarios(); track usuario.id) {
+            <article class="usuario-card">
+              <h3>{{ usuario.name }}</h3>
+
+              <p>
+                <strong>Usuario:</strong>
+                {{ usuario.username }}
+              </p>
+
+              <p>
+                <strong>Correo:</strong>
+                {{ usuario.email }}
+              </p>
+
+              <p>
+                <strong>Teléfono:</strong>
+                {{ usuario.phone }}
+              </p>
+
+              <p>
+                <strong>Sitio web:</strong>
+                {{ usuario.website }}
+              </p>
+            </article>
+          }
+        </div>
+      }
+    </section>
   </main>
 </div>
